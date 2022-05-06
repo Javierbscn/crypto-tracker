@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Note } from 'src/app/interfaces/note';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -28,7 +28,22 @@ export class NotesComponent implements OnInit {
     this.currentNote = { id: 0, title: '', description: '' };
   }
 
-  onAddNote(): void { }
+  onAddNote(): void {
+    try {
+      this.notes$
+        .pipe(
+          tap(res => res.forEach((note: Note) => this.currentNote.id = note.id + 1))
+        )
+        .subscribe()
+        .unsubscribe();
+
+      this.localStorageSvc.addNote(this.currentNote);
+
+      this.clearCurrentNote();
+    } catch (error) {
+      console.error('Error saving note', error);
+    }
+  }
 
   onEditingNote(note: Note): void {
     this.currentNote = note;

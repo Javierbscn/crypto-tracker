@@ -1,7 +1,7 @@
 <div class="row my-5 height-75">
   <h1 class="mb-3">My Notes</h1>
-  <div class="col col-md-6 col-lg-4 col-xxl-3">
-
+  <div class="col col-md-6 col-lg-4 col-xxl-3" *ngFor="let note of notes$ | async">
+    <app-note [note]="note" (editNoteClick)="onEditingNote($event)" (deleteNoteClick)="onDeleteNote($event)"></app-note>
   </div>
   <div class="col col-md-6 col-lg-4 col-xxl-3">
     <div class="card btn border-dashed border-4 my-3" data-bs-toggle="modal" data-bs-target="#addingANote">
