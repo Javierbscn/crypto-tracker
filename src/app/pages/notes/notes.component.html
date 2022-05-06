@@ -1,1 +1,43 @@
-{{ notes$ | async | json }}
+<div class="row my-5 height-75">
+  <h1 class="mb-3">My Notes</h1>
+  <div class="col col-md-6 col-lg-4 col-xxl-3">
+
+  </div>
+  <div class="col col-md-6 col-lg-4 col-xxl-3">
+    <div class="card btn border-dashed border-4 my-3" data-bs-toggle="modal" data-bs-target="#addingANote">
+      <div class="card-body d-flex justify-content-center align-items-center">
+        <p class="card-text h5">+ Add a new Note</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addingANote" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">New Note</h3>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="title" class="form-label">Note title:</label>
+          <input type="text" name="title" class="form-control" id="title" placeholder="Add a title...">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <textarea class="form-control" name="description" id="description" cols="10" rows="5"
+            placeholder="Write more details..."></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <ng-container *ngIf="!editingNote; else updatingNote">
+          <button type="button" class="btn btn-primary" (click)="onAddNote()">Save note</button>
+        </ng-container>
+        <ng-template #updatingNote>
+          <button type="button" class="btn btn-primary" (click)="onUpdateNote()">Update note</button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

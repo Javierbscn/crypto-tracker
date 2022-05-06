@@ -1,0 +1,13 @@
+.height-75 {
+  min-height: 75vh;
+  max-height: max-content;
+
+  .border-dashed {
+    border: 1px dashed #dee2e6;
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      background-color: #dee2e6;
+    }
+  }
+}
