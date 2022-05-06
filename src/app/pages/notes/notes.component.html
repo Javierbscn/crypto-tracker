@@ -21,12 +21,13 @@
       <div class="modal-body">
         <div class="mb-3">
           <label for="title" class="form-label">Note title:</label>
-          <input type="text" name="title" class="form-control" id="title" placeholder="Add a title...">
+          <input type="text" name="title" class="form-control" id="title" placeholder="Add a title..."
+            [(ngModel)]="currentNote.title">
         </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description:</label>
           <textarea class="form-control" name="description" id="description" cols="10" rows="5"
-            placeholder="Write more details..."></textarea>
+            placeholder="Write more details..." [(ngModel)]="currentNote.description"></textarea>
         </div>
       </div>
       <div class="modal-footer">
