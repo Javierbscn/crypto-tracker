@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  template: `<footer class="bg-dark text-white py-5">
+    <div class="container">
+      <p class="text-center">
+        Application created by
+        <a class="text-white" href="http://github.com/Javierbscn" target="_blank" rel="noopener noreferrer">Javier Boscán</a>
+        &copy; All Rights Reserved
+      </p>
+    </div>
+  </footer>`,
 })
-export class FooterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class FooterComponent {}
