@@ -6,7 +6,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+  styleUrls: ['./notes.component.scss'],
 })
 export class NotesComponent implements OnInit {
   notes$: Observable<Note[]>;
@@ -21,8 +21,7 @@ export class NotesComponent implements OnInit {
     this.clearCurrentNote();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   private clearCurrentNote(): void {
     this.currentNote = { id: 0, title: '', description: '' };
@@ -32,7 +31,9 @@ export class NotesComponent implements OnInit {
     try {
       this.notes$
         .pipe(
-          tap(res => res.forEach((note: Note) => this.currentNote.id = note.id + 1))
+          tap((res) =>
+            res.forEach((note: Note) => (this.currentNote.id = note.id + 1))
+          )
         )
         .subscribe()
         .unsubscribe();
@@ -51,7 +52,15 @@ export class NotesComponent implements OnInit {
     this.editingNote = true;
   }
 
-  onUpdateNote(): void { }
+  onUpdateNote(): void {
+    this.localStorageSvc.editNote(this.currentNote);
 
-  onDeleteNote(note: Note): void { }
+    this.editingNote = false;
+
+    this.clearCurrentNote();
+  }
+
+  onDeleteNote(note: Note): void {
+    this.localStorageSvc.deleteNote(note.id);
+  }
 }
