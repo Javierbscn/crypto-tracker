@@ -55,12 +55,16 @@ export class NotesComponent implements OnInit {
   onUpdateNote(): void {
     this.localStorageSvc.editNote(this.currentNote);
 
-    this.editingNote = false;
-
-    this.clearCurrentNote();
+    this.onCancelNote();
   }
 
   onDeleteNote(note: Note): void {
     this.localStorageSvc.deleteNote(note.id);
+  }
+
+  onCancelNote(): void {
+    this.editingNote = false;
+
+    this.clearCurrentNote()
   }
 }

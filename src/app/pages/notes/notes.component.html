@@ -6,7 +6,12 @@
   <div class="col col-md-6 col-lg-4 col-xxl-3">
     <div class="card btn border-dashed border-4 my-3" data-bs-toggle="modal" data-bs-target="#addingANote">
       <div class="card-body d-flex justify-content-center align-items-center">
-        <p class="card-text h5">+ Add a new Note</p>
+        <ng-container *ngIf="!editingNote; else editNoteOne">
+          <p class="card-text h5">+ Add a new Note</p>
+        </ng-container>
+        <ng-template #editNoteOne>
+          <p class="card-text h5">Continue editing note</p>
+        </ng-template>
       </div>
     </div>
   </div>
@@ -16,7 +21,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h3 class="modal-title">New Note</h3>
+        <ng-container *ngIf="!editingNote; else editNoteTwo">
+          <h3 class="modal-title">New Note</h3>
+        </ng-container>
+        <ng-template #editNoteTwo>
+          <h3 class="modal-title">Editing Note</h3>
+        </ng-template>
       </div>
       <div class="modal-body">
         <div class="mb-3">
@@ -31,7 +41,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="onCancelNote()">Cancel</button>
         <ng-container *ngIf="!editingNote; else updatingNote">
           <button type="button" class="btn btn-primary" (click)="onAddNote()">Save note</button>
         </ng-container>
