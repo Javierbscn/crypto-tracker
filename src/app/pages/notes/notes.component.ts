@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { first, Observable, tap } from 'rxjs';
 import { Note } from 'src/app/interfaces/note';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 
@@ -14,7 +14,9 @@ export class NotesComponent implements OnInit {
   editingNote: boolean;
 
   constructor(private localStorageSvc: LocalStorageService) {
-    this.notes$ = localStorageSvc.notes$.asObservable();
+    this.notes$ = localStorageSvc.notes$
+      .asObservable()
+      .pipe(tap((res) => res.sort((noteA, noteB) => noteA.id - noteB.id)));
 
     this.editingNote = false;
 
@@ -31,12 +33,10 @@ export class NotesComponent implements OnInit {
     try {
       this.notes$
         .pipe(
-          tap((res) =>
-            res.forEach((note: Note) => (this.currentNote.id = note.id + 1))
-          )
+          tap(res => res.map(note => this.currentNote.id = note.id + 1)),
+          first()
         )
-        .subscribe()
-        .unsubscribe();
+        .subscribe();
 
       this.localStorageSvc.addNote(this.currentNote);
 
