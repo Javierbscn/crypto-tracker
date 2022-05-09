@@ -15,17 +15,17 @@
       <td class="fw-bold">{{ coin.market_cap_rank }}</td>
       <td class="d-flex d-lg-block flex-column">
         <img [src]="coin.image" [alt]="coin.name">
-        {{ coin.name }} <span class="text-muted">{{ coin.symbol | uppercase }}</span>
+        {{ coin.name }} <span class="text-muted symbol">{{ coin.symbol | uppercase }}</span>
       </td>
-      <td>{{ coin.current_price }}</td>
+      <td>{{ coin.current_price | currency: currency.toUpperCase() :'symbol':'1.2-10' }}</td>
       <td
         [ngClass]="{'text-danger': coin.price_change_percentage_24h < 0, 'text-success': coin.price_change_percentage_24h > 0}"
       >
-        <span *ngIf="coin.price_change_percentage_24h">{{ coin.price_change_percentage_24h }}%</span>
+        <span *ngIf="coin.price_change_percentage_24h">{{ coin.price_change_percentage_24h | number:'1.2-2' }}%</span>
       </td>
-      <td>{{ coin.market_cap }}</td>
-      <td>{{ coin.circulating_supply }}</td>
-      <td>{{ coin.max_supply }}</td>
+      <td>{{ coin.market_cap | currency: currency.toUpperCase() }}</td>
+      <td>{{ coin.circulating_supply | number:'1.0-0' }}</td>
+      <td>{{ coin.max_supply | number:'1.0-0' }}</td>
     </tr>
   </tbody>
 </table>
