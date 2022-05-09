@@ -33,4 +33,28 @@ export class CoingeckoApiService {
       .pipe(tap(res => this.coinsSubject$.next(res)))
       .subscribe();
   }
+
+  get getCurrency(): string {
+    return this.currency;
+  }
+
+  get getPage(): number {
+    return this.currentPage;
+  }
+
+  get getTotalPages(): number {
+    return this.totalPages;
+  }
+
+  set setCurrency(currency: string) {
+    this.currency = currency;
+
+    this.getCoins();
+  }
+
+  set setPage(page: number) {
+    this.currentPage = page;
+
+    this.getCoins();
+  }
 }

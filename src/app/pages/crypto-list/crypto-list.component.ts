@@ -10,12 +10,17 @@ import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
 })
 export class CryptoListComponent implements OnInit {
   coins$!: Observable<Coin[]>;
+  currency: string;
+  currentPage: number;
 
   constructor(private readonly coingeckoApiSvc: CoingeckoApiService) {
     this.coins$ = coingeckoApiSvc.coins$;
+    this.currency = coingeckoApiSvc.getCurrency;
+    this.currentPage = coingeckoApiSvc.getPage;
   }
 
   ngOnInit(): void {
+    console.log(this.currency, this.currentPage)
   }
 
 }
