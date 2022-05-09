@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { Coin } from '../interfaces/coin';
 
 @Injectable({
@@ -21,5 +21,16 @@ export class CoingeckoApiService {
     this.currency = 'usd';
     this.totalPages = 134;
     this.currentPage = 1;
+
+    this.getCoins();
+  }
+
+  private getCoins(): void {
+    this.http
+      .get<Coin[]>(
+        this.API_URL + `&vs_currency=${this.currency}&page=${this.currentPage}`
+      )
+      .pipe(tap(res => this.coinsSubject$.next(res)))
+      .subscribe();
   }
 }

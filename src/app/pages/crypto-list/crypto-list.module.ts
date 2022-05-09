@@ -6,6 +6,7 @@ import { CryptoListComponent } from './crypto-list.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { UpButtonComponent } from './up-button/up-button.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { UpButtonComponent } from './up-button/up-button.component';
   ],
   imports: [
     CommonModule,
-    CryptoListRoutingModule
+    CryptoListRoutingModule,
+    HttpClientModule
   ]
 })
 export class CryptoListModule { }

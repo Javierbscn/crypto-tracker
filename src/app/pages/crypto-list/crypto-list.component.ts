@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Coin } from 'src/app/interfaces/coin';
+import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
 
 @Component({
   selector: 'app-crypto-list',
@@ -6,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./crypto-list.component.scss']
 })
 export class CryptoListComponent implements OnInit {
+  coins$!: Observable<Coin[]>;
 
-  constructor() { }
+  constructor(private readonly coingeckoApiSvc: CoingeckoApiService) {
+    this.coins$ = coingeckoApiSvc.coins$;
+  }
 
   ngOnInit(): void {
   }
