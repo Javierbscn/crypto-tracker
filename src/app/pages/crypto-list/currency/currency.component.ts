@@ -14,15 +14,15 @@ import { CurrenciesService } from 'src/app/services/currencies.service';
         role="button"
         aria-expanded="false"
       >
-        Currency: {{ currency }}
+        Currency: {{ currentCurrency | uppercase }}
       </a>
       <ul class="dropdown-menu">
         <li *ngFor="let currency of currencies">
           <button
-            class="dropdown-item"
+            class="dropdown-item d-flex justify-content-between"
             (click)="onSetCurrency(currency.symbol)"
           >
-            <span class="fw-bold">{{ currency.symbol }}</span> |
+            <span class="fw-bold">{{ currency.symbol }}</span>
             {{ currency.name }}
           </button>
         </li>
@@ -32,7 +32,7 @@ import { CurrenciesService } from 'src/app/services/currencies.service';
   styleUrls: ['./currency.component.scss'],
 })
 export class CurrencyComponent implements OnInit {
-  @Input() currency!: Currency;
+  @Input() currentCurrency!: string;
   currencies: Currency[];
 
   constructor(
@@ -44,7 +44,7 @@ export class CurrencyComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSetCurrency(symbol: string): void {
-    console.log(symbol)
+  onSetCurrency(currencySymbol: string): void {
+    this.coingeckoApiSvc.setCurrency = currencySymbol.toLowerCase();
   }
 }
