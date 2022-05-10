@@ -8,7 +8,6 @@ import { HeaderComponent } from './components/shared/header/header.component';
 import { CryptoListModule } from './pages/crypto-list/crypto-list.module';
 import { NotesModule } from './pages/notes/notes.module';
 import { NotFoundModule } from './pages/not-found/not-found.module';
-import { SpinnerModule } from './components/shared/spinner/spinner.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +21,6 @@ import { SpinnerModule } from './components/shared/spinner/spinner.module';
     CryptoListModule,
     NotesModule,
     NotFoundModule,
-    SpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

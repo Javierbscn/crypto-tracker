@@ -6,19 +6,25 @@ import { CryptoListComponent } from './crypto-list.component';
 import { CurrencyComponent } from './currency/currency.component';
 import { PaginationComponent } from './pagination/pagination.component';
 import { UpButtonComponent } from './up-button/up-button.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerModule } from 'src/app/components/shared/spinner/spinner.module';
+import { SpinnerInterceptor } from 'src/app/interceptors/spinner.interceptor';
 
 @NgModule({
   declarations: [
     CryptoListComponent,
     CurrencyComponent,
     PaginationComponent,
-    UpButtonComponent
+    UpButtonComponent,
   ],
   imports: [
     CommonModule,
     CryptoListRoutingModule,
-    HttpClientModule
-  ]
+    HttpClientModule,
+    SpinnerModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true },
+  ],
 })
-export class CryptoListModule { }
+export class CryptoListModule {}
