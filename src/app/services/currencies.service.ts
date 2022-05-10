@@ -57,7 +57,7 @@ export class CurrenciesService {
     ];
   }
 
-  getCurrencies(): Currency[] {
+  get getCurrencies(): Currency[] {
     return this.currencies;
   }
 }
