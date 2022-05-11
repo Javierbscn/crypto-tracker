@@ -1,0 +1,13 @@
+.navbar {
+  .icon {
+    width: 2rem;
+  }
+
+  .nav-link-hover {
+    color: rgba(255, 255, 255, .5);
+
+    &:hover, &.active {
+      color: rgba(255, 255, 255, .75);
+    }
+  }
+}
