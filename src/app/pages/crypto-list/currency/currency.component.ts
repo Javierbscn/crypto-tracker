@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Currency } from 'src/app/interfaces/currency';
 import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
 import { CurrenciesService } from 'src/app/services/currencies.service';
@@ -29,9 +29,8 @@ import { CurrenciesService } from 'src/app/services/currencies.service';
       </ul>
     </li>
   </ul>`,
-  styleUrls: ['./currency.component.scss'],
 })
-export class CurrencyComponent implements OnInit {
+export class CurrencyComponent {
   @Input() currentCurrency!: string;
   currencies: Currency[];
 
@@ -41,8 +40,6 @@ export class CurrencyComponent implements OnInit {
   ) {
     this.currencies = currenciesSvc.getCurrencies;
   }
-
-  ngOnInit(): void {}
 
   onSetCurrency(currencySymbol: string): void {
     this.coingeckoApiSvc.setCurrency = currencySymbol.toLowerCase();

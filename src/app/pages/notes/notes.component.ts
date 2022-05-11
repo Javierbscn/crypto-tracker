@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { first, Observable, tap } from 'rxjs';
 import { Note } from 'src/app/interfaces/note';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -8,7 +8,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
   templateUrl: './notes.component.html',
   styleUrls: ['./notes.component.scss'],
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent {
   notes$: Observable<Note[]>;
   currentNote!: Note;
   editingNote: boolean;
@@ -22,8 +22,6 @@ export class NotesComponent implements OnInit {
 
     this.clearCurrentNote();
   }
-
-  ngOnInit(): void {}
 
   private clearCurrentNote(): void {
     this.currentNote = { id: 0, title: '', description: '' };

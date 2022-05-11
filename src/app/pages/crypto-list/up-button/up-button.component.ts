@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, HostListener, Inject, OnInit } from '@angular/core';
+import { Component, HostListener, Inject } from '@angular/core';
 
 @Component({
   selector: 'app-up-button',
@@ -9,10 +9,9 @@ import { Component, HostListener, Inject, OnInit } from '@angular/core';
     class="position-fixed bottom-0 end-0 m-3"
   >
     <button class="btn btn-primary rounded-circle fs-4">⮝</button>
-  </div>`,
-  styleUrls: ['./up-button.component.scss']
+  </div>`
 })
-export class UpButtonComponent implements OnInit {
+export class UpButtonComponent {
   showButton: boolean;
 
   private scrollHeight: number;
@@ -32,8 +31,4 @@ export class UpButtonComponent implements OnInit {
   onScrollTop(): void {
     this.document.documentElement.scrollTop = 0;
   }
-
-  ngOnInit(): void {
-  }
-
 }

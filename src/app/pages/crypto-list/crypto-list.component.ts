@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DoCheck, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DoCheck } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Coin } from 'src/app/interfaces/coin';
 import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
@@ -9,7 +9,7 @@ import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
   styleUrls: ['./crypto-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CryptoListComponent implements OnInit, DoCheck {
+export class CryptoListComponent implements DoCheck {
   coins$!: Observable<Coin[]>;
   currency: string;
   currentPage: number;
@@ -20,11 +20,8 @@ export class CryptoListComponent implements OnInit, DoCheck {
     this.currentPage = coingeckoApiSvc.getPage;
   }
 
-  ngOnInit(): void {}
-
   ngDoCheck(): void {
     this.currency = this.coingeckoApiSvc.getCurrency;
     this.currentPage = this.coingeckoApiSvc.getPage;
   }
-
 }

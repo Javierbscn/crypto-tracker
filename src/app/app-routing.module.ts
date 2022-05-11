@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
@@ -17,9 +17,7 @@ const routes: Routes = [
   {
     path: 'notes',
     loadChildren: () =>
-      import('./pages/notes/notes.module').then(
-        (m) => m.NotesModule
-      ),
+      import('./pages/notes/notes.module').then((m) => m.NotesModule),
   },
   {
     path: '**',
@@ -32,6 +30,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

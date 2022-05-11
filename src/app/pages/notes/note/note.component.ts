@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Note } from 'src/app/interfaces/note';
 
 @Component({
@@ -28,14 +28,10 @@ import { Note } from 'src/app/interfaces/note';
   </div>`,
   styleUrls: ['./note.component.scss'],
 })
-export class NoteComponent implements OnInit {
+export class NoteComponent {
   @Input() note!: Note;
   @Output() editNoteClick = new EventEmitter<Note>();
   @Output() deleteNoteClick = new EventEmitter<Note>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   onEditNote(): void {
     this.editNoteClick.emit(this.note);

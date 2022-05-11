@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
 
 @Component({
@@ -16,9 +16,8 @@ import { CoingeckoApiService } from 'src/app/services/coingecko-api.service';
       </li>
     </ul>
   </nav>`,
-  styleUrls: ['./pagination.component.scss'],
 })
-export class PaginationComponent implements OnInit, DoCheck {
+export class PaginationComponent implements DoCheck {
   page: number;
   totalPages: number;
 
@@ -30,8 +29,6 @@ export class PaginationComponent implements OnInit, DoCheck {
   ngDoCheck(): void {
     this.page = this.coingeckoSvc.getPage;
   }
-
-  ngOnInit(): void {}
 
   onPrevPage(): void {
     if (this.page === 1) return;
