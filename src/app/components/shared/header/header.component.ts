@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-header',
   template: `<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']"
+      <a class="navbar-brand" [routerLink]="['/home']"
         ><img class="icon" src="/assets/icon.png" alt="Logo" /> Crypto
         Tracker</a
       >

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Coin } from 'src/app/interfaces/coin';
 import { UtilitiesService } from './utilities.service';
 
@@ -8,7 +8,7 @@ import { UtilitiesService } from './utilities.service';
   providedIn: 'root',
 })
 export class CoingeckoApiService {
-  coinsSubject$: Subject<Coin[]> = new Subject<Coin[]>();
+  coinsSubject$: BehaviorSubject<Coin[]> = new BehaviorSubject<Coin[]>([]);
   coins$: Observable<Coin[]>;
   private API_URL: string;
   private currency: string;
