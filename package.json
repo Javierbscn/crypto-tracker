@@ -1,6 +1,8 @@
 {
   "name": "crypto-tracker",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Application done for tracking the cryptocurrencies price",
+  "author": "Javier Boscan",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
