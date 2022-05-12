@@ -11,3 +11,5 @@ This app was done with Angular v13 and the Coingecko Api.
 ## App in Production
 
 See this app in an environment real at:
+
+https://app-cryptotracker.netlify.app/home
