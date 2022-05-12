@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject, tap } from 'rxjs';
 import { Coin } from 'src/app/interfaces/coin';
+import { UtilitiesService } from './utilities.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,12 +27,22 @@ export class CoingeckoApiService {
   }
 
   private getCoins(): void {
-    this.http
-      .get<Coin[]>(
-        this.API_URL + `&vs_currency=${this.currency}&page=${this.currentPage}`
-      )
-      .pipe(tap(res => this.coinsSubject$.next(res)))
-      .subscribe();
+    UtilitiesService.intervalPetition(
+      200000,
+      () => {
+        return this.http
+          .get<Coin[]>(
+            this.API_URL + `&vs_currency=${this.currency}&page=${this.currentPage}`
+          )
+          .pipe(
+            tap((res) =>
+              res.sort((coinA: Coin, coinB: Coin) => coinA.market_cap_rank - coinB.market_cap_rank)
+            ),
+            tap((res) => this.coinsSubject$.next(res))
+          );
+      },
+      () => true
+    ).subscribe();
   }
 
   get getCurrency(): string {
